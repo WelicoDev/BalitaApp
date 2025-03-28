@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home {% endblock %}
+{% block content %}
+
+    <section class="site-section">
+      <div class="container">
+        
+        <div class="row blog-entries">
+          <div class="col-md-12 col-lg-8 main-content">
+            
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="mb-4">Hi There! I'm {{ person.full_name }}</h2>
+                <p class="mb-5"><img src="{{ person.picture.url }}" alt="Image placeholder" class="img-fluid"></p>
+                <p>{{ person.bio }}</p>
+              </div>
+            </div>
+
+            <div class="row mb-5 mt-5">
+              <div class="col-md-12 mb-5">
+                <h2>My Latest Posts</h2>
+              </div>
+              <div class="col-md-12">
+                {% for post in posts %}
+                <div class="post-entry-horzontal">
+                  <a href="{% url 'detail' post.slug %}">
+                    <div class="image" style="background-image: url({{ post.picture.url }});"></div>
+                    <span class="text">
+                      <div class="post-meta">
+                        <span class="category">{{ post.category.name }}</span>
+                        <span class="mr-2">{{ post.created_at.date }} </span> &bullet;
+                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+                      </div>
+                      <h2>{{ post.title | truncatewords:8 }}</h2>
+                    </span>
+                  </a>
+                </div>
+                <!-- END post -->
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <nav aria-label="Page navigation" class="text-center">
+                  <ul class="pagination">
+                    {% if posts.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&lt;</a></li>
+                    {% endif %}
+                            {% for i in posts.paginator.page_range %}
+                                {% if posts.number == i %}
+                                    <li class="page-item active"><a class="page-link" href="">{{ i }}</a></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                  {% if posts.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&gt;</a></li>
+                  {% endif %}
+                  </ul>
+                </nav>
+              </div>
+            </div>
+
+            
+
+          </div>
+
+          <!-- END main-content -->
+
+          {% include 'sitebar.html' %}
+
+        </div>
+      </div>
+    </section>
+  
+{% endblock %}

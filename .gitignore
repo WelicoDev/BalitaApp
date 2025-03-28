@@ -1,0 +1,72 @@
+# Python-related
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+*.dylib
+*.egg-info/
+*.eggs/
+dist/
+build/
+eggs/
+
+# Django-related
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+*.db-journal
+media/
+static/
+
+# Virtual environment
+venv/
+.env/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# VS Code
+.vscode/
+
+# MacOS
+.DS_Store
+
+# PyCharm
+.idea/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Celery result backend
+celerybeat-schedule
+celerybeat.pid
+
+# Coverage directory used by coverage.py
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+
+# mypy
+.mypy_cache/
+
+# Django migrations
+*/migrations/*.pyc
+*/migrations/__pycache__/
+
+# Sphinx documentation
+docs/_build/
+
+# pipenv
+Pipfile.lock
+
+# pytest
+*.coveragerc
